@@ -23,26 +23,38 @@ mongoose.connect(process.env.MONGO_URI, {
 let Person = require("./models/personSchema");
 
 const createAndSavePerson = async (done) => {
-  const person = new Person({
-    name: "Jake",
-    age: 33,
-    favouriteFoods: ["Burgers", "Pizza"],
-  });
+  try {
+    const person = new Person({
+      name: "Jake",
+      age: 33,
+      favouriteFoods: ["Burgers", "Pizza"],
+    });
 
-  await person.save();
-  done(null, person);
+    await person.save();
+    done(null, person);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const createManyPeople = async (arrayOfPeople, done) => {
-  await Person.create(arrayOfPeople);
-  done(null, arrayOfPeople);
+  try {
+    await Person.create(arrayOfPeople);
+    done(null, arrayOfPeople);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const findPeopleByName = async (personName, done) => {
-  await Person.find({
-    name: personName,
-  });
-  done(null, personName);
+  try {
+    const person = await Person.find({
+      name: personName,
+    });
+    return done(null, person);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const findOneByFood = (food, done) => {
