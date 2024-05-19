@@ -1,5 +1,6 @@
-require('dotenv').config();
-
+require("dotenv").config({
+  path: "./sample.env",
+});
 
 let Person;
 
