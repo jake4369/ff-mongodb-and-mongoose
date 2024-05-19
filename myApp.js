@@ -51,7 +51,7 @@ const findPeopleByName = async (personName, done) => {
     const person = await Person.find({
       name: personName,
     });
-    return done(null, person);
+    done(null, person);
   } catch (error) {
     console.error(error);
   }
