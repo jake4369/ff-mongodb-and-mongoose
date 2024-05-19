@@ -97,8 +97,8 @@ const findAndUpdate = async (personName, done) => {
   try {
     const ageToSet = 20;
     const person = await Person.findOneAndUpdate(
-      personName,
-      { ...person, age: ageToSet },
+      { name: personName },
+      { age: ageToSet },
       { new: true }
     );
 
