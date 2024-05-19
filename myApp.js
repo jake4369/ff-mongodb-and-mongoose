@@ -73,7 +73,7 @@ const findPersonById = async (personId, done) => {
     const person = await Person.findById({
       _id: personId,
     });
-    done(nul, person);
+    done(null, person);
   } catch (error) {
     console.error(error);
   }
