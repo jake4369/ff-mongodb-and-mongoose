@@ -133,11 +133,9 @@ const queryChain = async (done) => {
   try {
     const foodToSearch = "burrito";
 
-    const people = await Person.find({ favoriteFoods: foodToSearch })
-      .sort({ name: -1 })
-      .limit(2)
-      .select("-age")
-      .exec();
+    const people = await Person.find({ favoriteFoods: foodToSearch });
+
+    people.sort({ name: -1 }).limit(2).select("-age").exec(done(err, people));
 
     done(null, people);
   } catch (error) {
