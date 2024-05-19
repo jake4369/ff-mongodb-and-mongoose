@@ -121,7 +121,7 @@ const removeManyPeople = async (done) => {
   try {
     const nameToRemove = "Mary";
 
-    const people = await Person.remove(nameToRemove);
+    const people = await Person.remove({ name: nameToRemove });
 
     done(null, people);
   } catch (error) {
