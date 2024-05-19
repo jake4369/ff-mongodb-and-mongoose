@@ -1,6 +1,20 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const connectDb = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("DB connected");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+connectDb();
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -8,17 +22,14 @@ mongoose.connect(process.env.MONGO_URI, {
 
 let Person = require("./models/personSchema");
 
-const createAndSavePerson = (done) => {
+const createAndSavePerson = async (done) => {
   const person = new Person({
     name: "Jake",
     age: 33,
     favouriteFoods: ["Burgers", "Pizza"],
   });
 
-  person
-    .save()
-    .then((person) => console.log(person))
-    .catch((err) => console.error(err));
+  await person.save();
   done(null, person);
 };
 
