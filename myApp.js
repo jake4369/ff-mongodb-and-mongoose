@@ -137,10 +137,10 @@ const queryChain = async (done) => {
       .sort({ name: -1 })
       .limit(2)
       .select("-age")
-      .exec(done(null, people));
-
-    done(null, people);
-  } catch (error) {}
+      .exec(done(err, people));
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** **Well Done !!**
