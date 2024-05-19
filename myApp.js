@@ -134,7 +134,7 @@ const queryChain = async (done) => {
     const foodToSearch = "burrito";
 
     const people = await Person.find({ favoriteFoods: foodToSearch })
-      .sort({ name: -1 })
+      .sort({ name: 1 })
       .limit(2)
       .select("-age")
       .exec(done(err, people));
