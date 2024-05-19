@@ -57,8 +57,15 @@ const findPeopleByName = async (personName, done) => {
   }
 };
 
-const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+const findOneByFood = async (food, done) => {
+  try {
+    await Person.findOne({
+      food,
+    });
+    done(null, food);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const findPersonById = (personId, done) => {
