@@ -9,7 +9,17 @@ mongoose.connect(process.env.MONGO_URI, {
 let Person = require("./models/personSchema");
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({
+    name: "Jake",
+    age: 33,
+    favouriteFoods: ["Burgers", "Pizza"],
+  });
+
+  person
+    .save()
+    .then((person) => console.log(person))
+    .catch((err) => console.error(err));
+  done(null, person);
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
