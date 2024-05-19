@@ -70,9 +70,7 @@ const findOneByFood = async (food, done) => {
 
 const findPersonById = async (personId, done) => {
   try {
-    const person = await Person.findById({
-      _id: personId,
-    });
+    const person = await Person.findById(personId);
     done(null, person);
   } catch (error) {
     console.error(error);
