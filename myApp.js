@@ -60,7 +60,7 @@ const findPeopleByName = async (personName, done) => {
 const findOneByFood = async (food, done) => {
   try {
     await Person.findOne({
-      food,
+      favoriteFoods: food,
     });
     done(null, food);
   } catch (error) {
